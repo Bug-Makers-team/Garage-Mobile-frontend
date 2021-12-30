@@ -11,6 +11,8 @@ export default class login extends React.Component {
     this.state = {
       username: "",
       password: "",
+      email:"",
+      phoneNum:"",
       sign:false
     };
   }
@@ -27,6 +29,14 @@ export default class login extends React.Component {
   handlePassword = (enteredText) => {
     this.setState({ password: enteredText });
   };
+
+  //signup
+  handleEmail = (enteredText) => {
+    this.setState({ email: enteredText });
+  };
+  handlePhonenum = (enteredText) => {
+    this.setState({ phoneNum: enteredText });
+  };
   handleSubmit = () => {
     //   if(this.state.username !== "" && this.state.password !== ""){
     this.context.loginFunction(this.state.username, this.state.password);
@@ -34,6 +44,12 @@ export default class login extends React.Component {
     console.log("submited");
     //   }
   };
+
+  //signUp 
+  handelSignupSumbit=()=>{
+    this.context.signup(this.state.username,this.state.password,
+      this.state.email,this.state.phoneNum);
+  }
   flagSign=()=>{
       this.setState({sign:true})
   }
@@ -56,24 +72,55 @@ export default class login extends React.Component {
               name="password"
               onChangeText={this.handlePassword}
             />
-            {/* <TextInput
-              placeholder="username"    
-              type="text"
-              name="username"
-              onChange={this.handleChange}
-            /> */}
-            {/* <TextInput
-              placeholder="password"
-              type="password"
-              name="password"
-              onChange={this.handleChange}
-            /> */}
             <View style={{display:"flex" ,flexDirection:"row"}}>
             <Button onPress={()=>this.handleSubmit()} title="Sign in" />
-            <Button onPress={()=>this.flagSign()} title="Sign up" />
+            <Button onPress={()=>this.flagSign()} title="Register" />
             </View>
            </View>
         </When>
+
+        
+
+
+        <When condition={this.state.sign}>
+        <View style={{alignItems:"center",marginTop:100}}
+>
+            <TextInput
+              placeholder="username"
+              type="text"
+              name="username"
+              onChangeText={this.handleUsername}
+            />
+            <TextInput
+              placeholder="password"
+              type="password"
+              name="password"
+              onChangeText={this.handlePassword}
+            />
+            <TextInput
+              placeholder="email"    
+              type="text"
+              name="email"
+              onChangeText={this.handleEmail}
+            />
+            <TextInput
+              placeholder="phone Number"
+              type="number"
+              name="phoneNum"
+              onChangeText={this.handlePhonenum}
+            />
+            
+            <View style={{display:"flex" ,flexDirection:"row"}}>
+            <Button onPress={()=>this.handelSignupSumbit()} title="Sign Up" />
+            {/* <Button onPress={()=>this.flagSign()} title="Sign up" /> */}
+            </View>
+           </View>
+        </When>
+
+
+
+
+
 
 
 
