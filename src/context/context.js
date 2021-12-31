@@ -58,9 +58,9 @@ export default function LoginProvider(props) {
 
     const validateMyToken = async(token) => {
         if (token) {
+            setLoggedIn(true);
             // const user = token;
             // console.log('user >>>', user[user]);
-            setLoggedIn(true);
         } else {
             setLoggedIn(false);
             setUser({});

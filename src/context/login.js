@@ -58,7 +58,9 @@ export default class login extends React.Component {
       });
   }
 
-  
+  goBack=()=>{
+    setTimeout(() => {this.props.navigation.goBack()}, 100)
+  }
 
   render() {
     return (
@@ -122,7 +124,7 @@ export default class login extends React.Component {
      </When>
      {this.context.LoggedIn?(
      <>
-     {setTimeout(() => {this.props.navigation.goBack()}, 100)}
+     {this.goBack()}
      </>
      ):null}
   
