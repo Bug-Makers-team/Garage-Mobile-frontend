@@ -38,6 +38,25 @@ export default function LoginProvider(props) {
         cookie.remove('token');
     }
 
+      // signUp
+
+      const signup = async (userName, passWord, email,phoneNum, role) => {
+        try {
+          let userObj = {
+            username: userName,
+            password: passWord,
+            phoneNum:phoneNum,
+            email: email,
+            role: role
+        }
+        console.log(userObj);
+          const res = await superagent.post(`${API}/signup`, userObj);
+          validateMyToken(res.body.token);
+        } catch (error) {
+          alert(error.message)
+        }
+      };
+
     const validateMyToken = async(token) => {
         if (token) {
             // const user = token;
@@ -60,6 +79,8 @@ export default function LoginProvider(props) {
         return user?.capabilities?.includes(capability);
     }
 
+  
+
     const state = {
         LoggedIn: LoggedIn,
         loginFunction: loginFunction,
@@ -67,7 +88,8 @@ export default function LoginProvider(props) {
         user: user,
         can: can,
         showEmergency:showEmergency,
-        setShowEmergency:setShowEmergency
+        setShowEmergency:setShowEmergency,
+        signup:signup
     }
     return (
         <LoginContext.Provider value={state}>
