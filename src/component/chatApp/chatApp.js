@@ -104,10 +104,10 @@ function App({navigation}) {
 
         <View style={{display:"flex" ,flexDirection:"row",justifyContent:'center',alignContent:'center'}}>
           
-        <Text>Please</Text>
+        <Text>Please </Text>
          <Text style={{color: 'blue'}}
-      onPress={() => navigation.navigate('Login')}>signin</Text>
-       <Text>first</Text>
+      onPress={() => navigation.navigate('SignIn')}>signin</Text>
+       <Text> first</Text>
         </View>
         
         </When>
