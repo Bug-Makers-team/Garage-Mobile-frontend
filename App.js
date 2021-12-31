@@ -1,18 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import LoginProvider from "./src/context/context";
-import Login from './src/context/login';
-
+import { StyleSheet } from 'react-native';
+import Header from './src/component/header/header';
+import Navbar from './src/component/navbar/NavBar';
 
 export default function App() {
   return (
-    <LoginProvider>
-      <Login />
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-   </LoginProvider>
+      <>
+        <Header/>
+        <Navbar/>
+        </>
   );
 }
 
