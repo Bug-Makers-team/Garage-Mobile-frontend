@@ -35,7 +35,6 @@ export default function LoginProvider(props) {
         // it will update the LoggedIn flag into false
         setLoggedIn(false);
         setUser({});
-        cookie.remove('token');
     }
 
       // signUp

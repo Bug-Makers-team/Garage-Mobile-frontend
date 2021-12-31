@@ -13,7 +13,8 @@ export default class login extends React.Component {
       password: "",
       email:"",
       phoneNum:"",
-      sign:false
+      sign:false,
+      back:false,
     };
   }
   // handleUsername = (e) => {
@@ -52,12 +53,18 @@ export default class login extends React.Component {
   }
   flagSign=()=>{
       this.setState({sign:true})
+      this.props.navigation.setOptions({
+        title: "SignUp"
+      });
   }
+
+  
 
   render() {
     return (
       <>
-        <When condition={!this.context.LoggedIn && !this.state.sign}>
+      <When condition={!this.context.LoggedIn}>
+        <When condition={!this.state.sign}>
         <View style={{alignItems:"center",marginTop:100}}
 >
             <TextInput
@@ -78,10 +85,6 @@ export default class login extends React.Component {
             </View>
            </View>
         </When>
-
-        
-
-
         <When condition={this.state.sign}>
         <View style={{alignItems:"center",marginTop:100}}
 >
@@ -116,28 +119,16 @@ export default class login extends React.Component {
             </View>
            </View>
         </When>
+     </When>
+     {this.context.LoggedIn?(
+     <>
+     {setTimeout(() => {this.props.navigation.goBack()}, 100)}
+     </>
+     ):null}
+  
+    
 
 
-
-
-
-
-
-
-
-
-        <When condition={this.context.LoggedIn && this.state.sign}>
-         
-        <View style={{alignItems:"center",marginTop:100}}>
-
-            <Text>{this.context.user.user}</Text>
-            {/* <Text>{this.context.user.id}</Text> */}
-            </View>
-            
-        <View style={{alignItems:"center",marginTop:100}}>
-          <Button onPress={this.context.logoutFunction} title="logout"  />
-          </View>
-        </When>
         
       </>
     );
