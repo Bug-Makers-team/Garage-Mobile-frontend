@@ -25,27 +25,12 @@ function App({navigation}) {
   },[state.user])
   
   const handlePress = () => setExpanded(!expanded);
-  // const [showForm, setShowForm] = useState(true);
 
   const handleEmergency=()=>{
     socket.emit("join_room", room);
     setShowEmergency(false);
   }
 
-
-  // const joinRoom = () => {
-  //   if (username !== "" && room !== "") {
-  //     socket.emit("join_room", room);
-  //     setShowChat(true);
-  //     setShowForm(false)
-  //   }
-  // };
-  // const joinChat = (enteredText) => {
-  //   setUsername(enteredText);
-  // };
-  // const chatRoom = (enteredText) => {
-  //   setRoom(enteredText);
-  // };
 
   return (
     <>
@@ -65,36 +50,8 @@ function App({navigation}) {
     </When>
     <When condition={!state.showEmergency}>
     <View>
-      {/* {
-      showEmergency ? (
-        <Button
-        class='emergencybtn'
-        onPress={() => {
-            setShowEmergency(false);
-        }}
-        title="Emergancy"
-        />
-        
-      ) : 
-      showForm? (
-        <View>
-          <Text>Join A Chat</Text>
-          <TextInput
-            type="text"
-            placeholder="John..."
-            onChangeText={joinChat}
-          />
-          <TextInput
-            type="text"
-            placeholder="Room ID..."
-            onChangeText={chatRoom}
-          />
-          <Button class='joinroombtn' onPress={joinRoom} title="Join A Room"/>
-        </View>
-      ): null} */}
-      {/* {showChat ? ( */}
+      
         <Chat socket={socket} username={username} room={room} />
-      {/* ) : null} */}
       </View>
 
 

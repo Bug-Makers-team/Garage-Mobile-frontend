@@ -50,6 +50,7 @@ export default class login extends React.Component {
   handelSignupSumbit=()=>{
     this.context.signup(this.state.username,this.state.password,
       this.state.email,this.state.phoneNum);
+      this.setState({sign:false})
   }
   flagSign=()=>{
       this.setState({sign:true})

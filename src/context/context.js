@@ -25,7 +25,7 @@ export default function LoginProvider(props) {
             console.log(response.body.user)
             user.user=response.body.user.username
             user.capabilities=response.body.user.capabilities
-            user.id=response.body.user.id
+            user.id=response.body.user.id  
             console.log(user);
             validateMyToken(response.body.token);
         } catch (err) { }
