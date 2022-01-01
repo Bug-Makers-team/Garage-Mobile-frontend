@@ -49,7 +49,7 @@ export default function Main() {
                 </Text>
               ) : (
                 <Text
-                onPress={()=>state.logoutFunction()}
+                  onPress={() => state.logoutFunction()}
                   style={{
                     padding: 10,
                     color: "#000",
