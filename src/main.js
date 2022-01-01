@@ -8,12 +8,13 @@ import AboutUs from "./component/aboutUs/AboutUs";
 import Profile from "./component/profile/Profile";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import NavBar from "./component/navbar/tabs";
 import { When } from "react-if";
 import { LoginContext } from "./context/context";
 import { useContext } from "react";
 import { Button } from "react-native-paper";
 import SignFunction from "./functions/SignFunction";
+import NavBar from "./component/navbar/navBar";
+
 const Stack = createNativeStackNavigator();
 
 export default function Main() {
@@ -23,8 +24,6 @@ export default function Main() {
 
   return (
     <>
-      {/* <NavBar/> */}
-      {/* <NavigationContainer> */}
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
@@ -73,7 +72,6 @@ export default function Main() {
         <Stack.Screen name="AboutUs" component={AboutUs} />
         <Stack.Screen name="Emergency" component={ChatApp} />
       </Stack.Navigator>
-      {/* </NavigationContainer> */}
     </>
   );
 }
