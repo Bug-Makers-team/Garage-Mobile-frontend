@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, Text } from 'react-native';
-import Locationuser  from "../location/Location"
+import AboutUs from '../aboutUs/AboutUs';
+import Locationuser  from "../location/Location";
+
 export default function Home() {
     return (
         <>
@@ -9,6 +11,7 @@ export default function Home() {
          
         </View>
           <Locationuser />
+          <AboutUs/>
            </>
     )
 }

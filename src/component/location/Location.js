@@ -42,7 +42,7 @@ export default class Locationuser extends React.Component {
       lat: userLocation[0][1],
       lon: userLocation[1][1]
     })
-    console.log(lat)
+    console.log(userLocation)
   }
   render() {
 
@@ -57,7 +57,10 @@ export default class Locationuser extends React.Component {
           <MapView style={styles.map}
 
 
-            initialRegion={{ latitude: `${this.state.lat}`, longitude: `${this.state.lon}`, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }} showsUserLocation={true} />
+            initialRegion={{
+              latitude: `${this.state.lat}`,
+              longitude: `${this.state.lon}`
+            }} showsUserLocation={true} />
 
         </View>
       </>
