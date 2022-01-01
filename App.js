@@ -1,14 +1,25 @@
+import { StyleSheet } from 'react-native';
+import Header from './src/component/header/header';
+import Tabs from './src/component/navbar/tabs';
 import LoginProvider from "./src/context/context";
-import Main from "./src/main";
 import { NavigationContainer } from '@react-navigation/native';
-
 
 export default function App() {
   return (
     <LoginProvider>
-      <NavigationContainer>
-      <Main/>
-      </NavigationContainer>
-   </LoginProvider>
+    <NavigationContainer>
+      <Header/>
+    <Tabs/>
+    </NavigationContainer>
+ </LoginProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
