@@ -7,10 +7,10 @@ import {LoginContext} from "../../context/context";
 import { When } from "react-if";
 import { List } from 'react-native-paper';
 import login from "../../context/login";
+import * as Location from 'expo-location';
 
-
-// const socket = io.connect("https://chat-test-bugmakers.herokuapp.com");
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("https://chat-test-bugmakers.herokuapp.com");
+// const socket = io.connect("http://localhost:3001");
 
 function App({navigation}) {
   const state =useContext(LoginContext)
@@ -22,7 +22,8 @@ function App({navigation}) {
   useEffect(()=>{
     setUsername(state.user.user)
     setRoom(state.user)
-  },[state.user])
+    socket.emit("join_room", room);
+  },[])
   
   const handlePress = () => setExpanded(!expanded);
 
@@ -32,10 +33,11 @@ function App({navigation}) {
   }
 
 
+
   return (
     <>
   <When condition={state.LoggedIn}>
-    <When condition={state.showEmergency}>
+
 
     <List.Section title="Accordions">
       <List.Accordion
@@ -46,16 +48,8 @@ function App({navigation}) {
       </List.Accordion>
     </List.Section>
 
+    <Button title="Send Help" onPress={()=>navigation.navigate('Location')} />
 
-    </When>
-    <When condition={!state.showEmergency}>
-    <View>
-      
-        <Chat socket={socket} username={username} room={room} />
-      </View>
-
-
-        </When>
       </When>
       <When condition={!state.LoggedIn}>
 

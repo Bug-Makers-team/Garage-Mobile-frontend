@@ -6,9 +6,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { LoginContext } from "./context/context";
 import { useContext } from "react";
 import Navigator from "./navigator/navigator";
-import Emergency from "./component/chatApp/emergency"
+import Emergency from "./component/chatApp/emergency";
 import LogoTitle from "./LogoTitle";
 import { useNavigation } from "@react-navigation/native";
+import Location from "./component/location/Location"
+import ChatApp from "./component/chatApp/chatApp";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,14 +19,12 @@ export default function Main() {
 
   const navigation = useNavigation();
 
- 
-
   return (
     <>
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#dc9c79",
+            backgroundColor: "#dddada",
           },
           headerTintColor: "#fff",
           headerTitleStyle: {
@@ -36,7 +36,8 @@ export default function Main() {
                 <Text
                   onPress={() => navigation.navigate("SignIn")}
                   style={{
-                    padding: 10,
+                    padding: 7,
+                    marginRight:5,
                     color: "#000",
                     backgroundColor: "#ffffff",
                   }}
@@ -45,9 +46,10 @@ export default function Main() {
                 </Text>
               ) : (
                 <Text
-                onPress={()=>state.logoutFunction()}
+                  onPress={() => state.logoutFunction()}
                   style={{
-                    padding: 10,
+                    padding: 7,
+                    marginRight:5,
                     color: "#000",
                     backgroundColor: "#ffffff",
                   }}
@@ -62,12 +64,23 @@ export default function Main() {
         <Stack.Screen
           name="Navigator"
           component={Navigator}
-          options={{headerShown: false }}
+          options={{ headerShown: false }}
         />
-        <Stack.Screen name="SignIn" component={Login} options={{ headerTitle: (props) => <LogoTitle {...props} title="SignIn" /> }} />
+        <Stack.Screen
+          name="SignIn"
+          component={Login}
+          options={{
+            headerTitle: (props) => (
+              <LogoTitle {...props} title="SignIn" />
+            ),
+          }}
+        />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="AboutUs" component={AboutUs} />
         <Stack.Screen name="Emergency" component={Emergency} />
+        <Stack.Screen name="Location" component={Location} />
+        <Stack.Screen name="ChatApp" component={ChatApp} />
+
       </Stack.Navigator>
     </>
   );
@@ -81,3 +94,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+{/* <Text style={{textAlign:'center',backgroundColor:"#f5cbaa"}} onPress={()=>navigation.navigate('AboutUs')}>AboutUs</Text> */}

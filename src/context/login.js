@@ -80,6 +80,7 @@ export default class login extends React.Component {
               placeholder="password"
               type="password"
               name="password"
+              secureTextEntry={true}
               onChangeText={this.handlePassword}
             />
             <View style={{display:"flex" ,flexDirection:"row"}}>
@@ -101,6 +102,7 @@ export default class login extends React.Component {
               placeholder="password"
               type="password"
               name="password"
+              secureTextEntry={true}
               onChangeText={this.handlePassword}
             />
             <TextInput

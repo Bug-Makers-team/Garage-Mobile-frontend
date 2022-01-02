@@ -10,7 +10,7 @@ import login from "../../context/login";
 
 
 const socket = io.connect("https://chat-test-bugmakers.herokuapp.com");
-//const socket = io.connect("http://localhost:3001");
+// const socket = io.connect("http://localhost:3001");
 
 function App({navigation}) {
   const state =useContext(LoginContext)
@@ -22,7 +22,8 @@ function App({navigation}) {
   useEffect(()=>{
     setUsername(state.user.user)
     setRoom(state.user)
-  },[state.user])
+    socket.emit("join_room", room);
+  },[])
 
   return (
     <>
