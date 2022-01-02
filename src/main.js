@@ -1,16 +1,19 @@
-import { StyleSheet, Text, Image } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import LoginProvider from "./context/context";
 import Login from "./context/login";
+import ChatApp from "./component/chatApp/chatApp";
+import Home from "./component/home/Home";
 import AboutUs from "./component/aboutUs/AboutUs";
 import Profile from "./component/profile/Profile";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { When } from "react-if";
 import { LoginContext } from "./context/context";
 import { useContext } from "react";
-import Navigator from "./navigator/navigator";
-import Emergency from "./component/chatApp/emergency";
-import LogoTitle from "./LogoTitle";
-import { useNavigation } from "@react-navigation/native";
-import Location from "./component/location/Location"
-import ChatApp from "./component/chatApp/chatApp";
+import { Button } from "react-native-paper";
+import SignFunction from "./functions/SignFunction";
+import NavBar from "./component/navbar/navBar";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,7 +27,7 @@ export default function Main() {
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#dddada",
+            backgroundColor: "#dc9c79",
           },
           headerTintColor: "#fff",
           headerTitleStyle: {
@@ -36,8 +39,7 @@ export default function Main() {
                 <Text
                   onPress={() => navigation.navigate("SignIn")}
                   style={{
-                    padding: 7,
-                    marginRight:5,
+                    padding: 10,
                     color: "#000",
                     backgroundColor: "#ffffff",
                   }}
@@ -46,10 +48,9 @@ export default function Main() {
                 </Text>
               ) : (
                 <Text
-                  onPress={() => state.logoutFunction()}
+                onPress={()=>state.logoutFunction()}
                   style={{
-                    padding: 7,
-                    marginRight:5,
+                    padding: 10,
                     color: "#000",
                     backgroundColor: "#ffffff",
                   }}
@@ -62,25 +63,14 @@ export default function Main() {
         }}
       >
         <Stack.Screen
-          name="Navigator"
-          component={Navigator}
-          options={{ headerShown: false }}
+          name="Home"
+          component={Home}
+          options={{ title: "Welcome" }}
         />
-        <Stack.Screen
-          name="SignIn"
-          component={Login}
-          options={{
-            headerTitle: (props) => (
-              <LogoTitle {...props} title="SignIn" />
-            ),
-          }}
-        />
+        <Stack.Screen name="SignIn" component={Login} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="AboutUs" component={AboutUs} />
-        <Stack.Screen name="Emergency" component={Emergency} />
-        <Stack.Screen name="Location" component={Location} />
-        <Stack.Screen name="ChatApp" component={ChatApp} />
-
+        <Stack.Screen name="Emergency" component={ChatApp} />
       </Stack.Navigator>
     </>
   );
@@ -94,4 +84,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-{/* <Text style={{textAlign:'center',backgroundColor:"#f5cbaa"}} onPress={()=>navigation.navigate('AboutUs')}>AboutUs</Text> */}

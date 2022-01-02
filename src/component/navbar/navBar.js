@@ -3,7 +3,7 @@ import { Appbar } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 
 
-
+let home=require("../../../assets/icons/home.png");
 let profile=require("../../../assets/icons/profile.png");
 const MyComponent = (props) => (
   

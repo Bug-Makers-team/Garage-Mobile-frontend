@@ -40,12 +40,11 @@ function Chat({ socket, username, room }) {
       </View>
       <View className="chat-body" style={{marginTop:100, width:300}}>
         <ScrollView  className="message-container">
-          {messageList.map((messageContent,idx) => {
+          {messageList.map((messageContent) => {
             return (
               <View
                 className="message"
                 id={username === messageContent.author ? "you" : "other"}
-                key={idx}
               >
                 <View>
                   <View className="message-content">
