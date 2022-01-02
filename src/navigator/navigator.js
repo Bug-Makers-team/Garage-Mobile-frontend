@@ -6,7 +6,7 @@ import { LoginContext } from '../context/context';
 import Emergency from '../component/chatApp/emergency';
 import Home from '../component/home/Home';
 import Profile from '../component/profile/Profile';
-import ChatApp from '../component/chatApp/chatApp2';
+import ChatApp from '../component/chatApp/chatApp';
 import LogoTitle from '../LogoTitle';
 
 export default function Navigator({navigation}) {
@@ -17,6 +17,9 @@ export default function Navigator({navigation}) {
         {/* <NavBar navigation={navigation}/> */}
         <Tab.Navigator 
         screenOptions={{
+          headerStyle: {
+            backgroundColor: "#dddada",
+          },
             tabBarShowLabel: false,
             headerRight: () => (
                 <>
@@ -24,7 +27,7 @@ export default function Navigator({navigation}) {
                     <Text
                       onPress={() => navigation.navigate("SignIn")}
                       style={{
-                        padding: 10,
+                        padding: 7,
                         color: "#000",
                         backgroundColor: "#ffffff",
                       }}
@@ -34,11 +37,11 @@ export default function Navigator({navigation}) {
                   ) : (
                     <Text
                     onPress={()=>state.logoutFunction()}
-                      style={{
-                        padding: 10,
-                        color: "#000",
-                        backgroundColor: "#ffffff",
-                      }}
+                    style={{
+                      padding: 7,
+                      color: "#000",
+                      backgroundColor: "#ffffff",
+                    }}
                     >
                       Sign Out
                     </Text>

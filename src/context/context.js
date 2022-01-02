@@ -15,6 +15,7 @@ export default function LoginProvider(props) {
 
 
 
+
     // user.capabilities = ['read', 'create', 'update', 'delete'];
     // user.capabilities = ['read', 'create'];
 
@@ -88,7 +89,8 @@ export default function LoginProvider(props) {
         can: can,
         showEmergency:showEmergency,
         setShowEmergency:setShowEmergency,
-        signup:signup
+        signup:signup,
+
     }
     return (
         <LoginContext.Provider value={state}>
