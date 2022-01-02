@@ -9,8 +9,8 @@ import { List } from 'react-native-paper';
 import login from "../../context/login";
 
 
-// const socket = io.connect("https://chat-test-bugmakers.herokuapp.com");
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("https://chat-test-bugmakers.herokuapp.com");
+//const socket = io.connect("http://localhost:3001");
 
 function App({navigation}) {
   const state =useContext(LoginContext)
