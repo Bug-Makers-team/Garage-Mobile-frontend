@@ -7,7 +7,7 @@ import {LoginContext} from "../../context/context";
 import { When } from "react-if";
 import { List } from 'react-native-paper';
 import login from "../../context/login";
-
+import * as Location from 'expo-location';
 
 const socket = io.connect("https://chat-test-bugmakers.herokuapp.com");
 // const socket = io.connect("http://localhost:3001");
@@ -24,14 +24,42 @@ function App({navigation}) {
     setRoom(state.user)
     socket.emit("join_room", room);
   },[])
+  
+  const handlePress = () => setExpanded(!expanded);
+
+  const handleEmergency=()=>{
+    socket.emit("join_room", room);
+    setShowEmergency(false);
+  }
+
+
 
   return (
     <>
   <When condition={state.LoggedIn}>
 
-    <View>
-        <Chat socket={socket} username={username} room={room} />
-      </View>
+
+    <List.Section title="Accordions">
+      <List.Accordion
+        title="Uncontrolled Accordion"
+        left={props => <List.Icon {...props} icon="folder" />}>
+        <List.Item title="First item" />
+        <List.Item title="Second item" />
+      </List.Accordion>
+    </List.Section>
+
+    <Button title="Send Help" onPress={()=>navigation.navigate('Location')} />
+
+      </When>
+      <When condition={!state.LoggedIn}>
+
+        <View style={{display:"flex" ,flexDirection:"row",justifyContent:'center',alignContent:'center'}}>
+          
+        <Text>Please </Text>
+         <Text style={{color: 'blue'}}
+      onPress={() => navigation.navigate('SignIn')}>signin</Text>
+       <Text> first</Text>
+        </View>
         
         </When>
     </>
