@@ -11,7 +11,9 @@ import LogoTitle from "./LogoTitle";
 import { useNavigation } from "@react-navigation/native";
 import Location from "./component/location/Location"
 import ChatApp from "./component/chatApp/chatApp";
-import category from "./component/category/category"
+import category from "./component/category/category";
+
+
 const Stack = createNativeStackNavigator();
 
 export default function Main() {

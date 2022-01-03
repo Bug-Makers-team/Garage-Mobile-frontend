@@ -1,49 +1,60 @@
-import * as React from 'react';
-import { Avatar, Button, Card, Title, Paragraph ,ScrollView} from 'react-native-paper';
-import superagent from 'superagent';
-import { useEffect, useState } from "react";
+// import * as React from 'react';
+import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
+import superagent from "superagent";
+import React, { useEffect, useState } from "react";
+import { FlatList } from "react-native";
 
+export default function services({ route, navigation }) {
+  const api = " https://garage-mobile.herokuapp.com/services";
+  const [service, setservices] = useState(null);
+  // let service=null;
+  // { name: "", description: "", category: "", price: "", imgURL: "" }
+  const { categoryName } = route.params;
+  console.log(categoryName);
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await superagent.get(`${api}`);
 
-export default function services(props) {
+        setservices(
+          response.body.filter((item) => {
+            console.log(item.category);
+            return item.category === categoryName;
+          })
+        );
+      } catch (err) {}
+    })();
+  }, []);
 
+  const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 
-    const api = " https://garage-mobile.herokuapp.com/services"
-    const [service, showservices] = useState([]);
-    // { name: "", description: "", category: "", price: "", imgURL: "" }
-    useEffect(() => {
-        async () => {
-            try {
-                const response = await superagent.get(`${api}`)
-                console.log('====================================');
-                console.log(response);
-                console.log('====================================');
-                // service.name = response.body.service.name
-                // service.description = response.body.service.description
-                // service.category = response.body.service.category
-                // service.price = response.body.service.price
-                // service.imgURL = response.body.service.imgURL
-            } catch (err) { }
-        }
-    }, [])
-
-    const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
-
-    return (
-        // <ScrollView>
-            <Card>
-                <Card.Title title={service.category} left={LeftContent} />
+  return (
+    <>
+      {service ? (
+        <>
+          <FlatList
+            data={service}
+            renderItem={({ item }) => (
+                <Card>
+                     {console.log(item.imgURL)}
+                <Card.Title title={item.category} left={LeftContent} />
                 <Card.Content>
-                    <Title>{service.name}</Title>
+                  <Title>{item.name}</Title>
                 </Card.Content>
-                <Card.Cover source={service.imgURL} />
+                <Card.Cover source={item.imgURL} />
                 <Card.Content>
-                    <Paragraph>{service.price}</Paragraph>
-                    <Paragraph>{service.description}</Paragraph>
+                  <Paragraph>{item.price}</Paragraph>
+                  <Paragraph>{item.description}</Paragraph>
                 </Card.Content>
                 <Card.Actions>
-                    <Button>Buy Services</Button>
+                  <Button>Buy Services</Button>
                 </Card.Actions>
-            </Card>
-        // </ScrollView>
-    );
+              </Card>
+            )}
+          />
+         
+        </>
+      ) : null}
+    </>
+  );
 }
