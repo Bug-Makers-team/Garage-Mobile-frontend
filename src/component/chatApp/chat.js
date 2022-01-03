@@ -91,7 +91,7 @@ function Chat({ socket, username, room }) {
     
      
        <TextInput
-           style={styles.input}
+          //  style={styles.input}
            placeholder="How can We help you 🧑‍🔧..."
            underlineColorAndroid="transparent"
 
