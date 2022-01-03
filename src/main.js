@@ -11,7 +11,7 @@ import LogoTitle from "./LogoTitle";
 import { useNavigation } from "@react-navigation/native";
 import Location from "./component/location/Location"
 import ChatApp from "./component/chatApp/chatApp";
-
+import category from "./component/category/category"
 const Stack = createNativeStackNavigator();
 
 export default function Main() {
@@ -80,6 +80,7 @@ export default function Main() {
         <Stack.Screen name="Emergency" component={Emergency} />
         <Stack.Screen name="Location" component={Location} />
         <Stack.Screen name="ChatApp" component={ChatApp} />
+        <Stack.Screen name="category" component={category} />
 
       </Stack.Navigator>
     </>
