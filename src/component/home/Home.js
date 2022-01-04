@@ -43,7 +43,7 @@ const ENTRIES1 = [
     title: "Beautiful and dramatic Antelope Canyon",
     subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
     illustration:
-      "https://di-uploads-pod2.dealerinspire.com/olathedodgechryslerjeepram/uploads/2019/12/Auto-body-repair_56693085.jpg",
+      "https://www.ridetime.ca/wp-content/uploads/2018/04/shutterstock_590265665.jpg",
   },
 ];
 const { width: screenWidth } = Dimensions.get("window");
@@ -85,9 +85,7 @@ const MyCarousel = ({navigation}) => {
     <>
         <Image
           style={styles.backgroundImage}
-          source={{
-              uri: "https://we7s02xsfeo1fdoee1g3zn95-wpengine.netdna-ssl.com/wp-content/uploads/mechanics-examing-vehicle-for-auto-repairs-718x344.jpg",
-            }}         />
+          source={require("../../../assets/images/hero.png")}       />
       <View style={styles.container}>
 
         <View style={{ display: "flex", flexDirection: "row",marginBottom:8, }}>
@@ -142,7 +140,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   backgroundImage: {
-       flex: 1
+       flex: 1,
+       width:"100%"
 
     },
   section: {
