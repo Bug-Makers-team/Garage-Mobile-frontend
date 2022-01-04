@@ -7,7 +7,11 @@ import {LoginContext} from "../../context/context";
 import { When } from "react-if";
 import { List } from 'react-native-paper';
 import login from "../../context/login";
+import { StatusBar } from 'expo-status-bar';
+import Header from "./headerChat";
 
+import {ImageBackground,SafeAreaView } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';import tw from 'tailwind-react-native-classnames'
 
 const socket = io.connect("https://chat-test-bugmakers.herokuapp.com");
 // const socket = io.connect("http://localhost:3001");
@@ -28,11 +32,23 @@ function App({navigation}) {
   return (
     <>
   <When condition={state.LoggedIn}>
+{/* <View style ={{width:800, height:900, alignItems:"center"}}> */}
+  <SafeAreaProvider>    
+<SafeAreaView style={tw`flex-1 text-black`}>  
 
-    <View>
-        <Chat socket={socket} username={username} room={room} />
-      </View>
-        
+
+  <ImageBackground style={{ flex: 1 }}     resizeMode="cover"    source={{uri: "https://www.macmillandictionary.com/external/slideshow/full/White_full.png"}}
+  resizeMode="cover"> 
+  <Header/>
+  <Chat  socket={socket} username={username} room={room} /> 
+
+  </ImageBackground>     
+  <StatusBar animated={true} backgroundColor="green" />   
+
+
+</SafeAreaView>    
+</SafeAreaProvider>  
+{/* </View> */}
         </When>
     </>
   );
