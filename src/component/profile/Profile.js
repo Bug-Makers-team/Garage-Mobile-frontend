@@ -4,40 +4,78 @@ import { LoginContext } from "../../context/context";
 import superagent from "superagent";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 import {styles} from "../../styleSheet/styleSheet";
-import { notSignedinAlert } from "../../alerts/alerts";
+import { AlertschemaApprove } from "../../alerts/alerts";
+
 
 export default function Profile({navigation}) {
   const state=useContext(LoginContext);
   const [service, setservices] = useState(null);
   const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
+  const alertDeleteContent={
+    title:"Alert",
+    process:"delete the service"
+  }
+  const alertBuyContent={
+
+  }
 
     useEffect(() => {
         (async () => {
           try {
             const api='https://garage-mobile.herokuapp.com/user/myservice'
             const response = await superagent.get(api).set('authorization', `Bearer ${state.user.token}`);
-            console.log(response.body);
+            // console.log(response.body);
 
             setservices(
               response.body.filter((item) => {
-                  console.log("context",state.user.id);
-                  console.log(item.user_id);
-                  console.log(item.user_id === state.user.id);
+                  // console.log("context",state.user.id);
+                  // console.log(item.user_id);
+                  // console.log(item.user_id === state.user.id);
                 return parseInt(item.user_id) === parseInt(state.user.id);
               })
             );
           } catch (err) {}
         })();
-      }, [state.LoggedIn]);
+      });
 
-      // const deleteFunction
+      const deleteFunction= async(id)=>{
+        try {
+          const api=`https://garage-mobile.herokuapp.com/user/myservice/${id}/`
+          const response = await superagent.delete(api).set('authorization', `Bearer ${state.user.token}`);
+          console.log(response.body);
+          
+          if (response.body) {
+            try{
+              const api='https://garage-mobile.herokuapp.com/user/myservice'
+              const response = await superagent.get(api).set('authorization', `Bearer ${state.user.token}`);
+              // console.log(response.body);
+  
+              setservices(
+                response.body.filter((item) => {
+                    console.log("context",state.user.id);
+                    // console.log(item.user_id);
+                    // console.log(item.user_id === state.user.id);
+                  return parseInt(item.user_id) === parseInt(state.user.id);
+                })
+              );
+            }catch (err) {}
+          }
+          // setservices(
+          //   response.body.filter((item) => {
+          //       console.log("context",state.user.id);
+          //       console.log(item.user_id);
+          //       console.log(item.user_id === state.user.id);
+          //     return parseInt(item.user_id) === parseInt(state.user.id);
+          //   })
+          // );
+        } catch (err) {}
+      }
 
     return (
         <>
         {state.LoggedIn?(<>
             {service ? (
                 <>
-            {console.log(service)}
           <FlatList
             data={service}
             renderItem={({ item }) => (
@@ -52,7 +90,10 @@ export default function Profile({navigation}) {
                   <Paragraph>{item.description}</Paragraph>
                 </Card.Content>
                 <Card.Actions>
-                    <Text style={styles.button}>Delete Service</Text>
+                  <View style={{display:"flex" ,flexDirection:"row"}}>
+                    <Text style={styles.button}>Buy Service</Text>
+                    <Text style={styles.button} onPress={()=>AlertschemaApprove(alertDeleteContent,deleteFunction,item.id)}>Delete Service</Text>
+                  </View>
                 </Card.Actions>
               </Card>
               </>

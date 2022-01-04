@@ -5,7 +5,7 @@ import superagent from "superagent";
 import React, { useContext, useEffect, useState } from "react";
 import { FlatList, Text } from "react-native";
 import {styles} from "../../styleSheet/styleSheet";
-import { notSignedinAlert } from "../../alerts/alerts";
+import { Alertschema } from "../../alerts/alerts";
 import { LoginContext } from "../../context/context";
 
 
@@ -43,7 +43,7 @@ export default function services({ route, navigation }) {
   const addServices= async(item)=>{
 
 
-    notSignedinAlert(alertContent)
+    Alertschema(alertContent)
 
     if(state.LoggedIn){
       const api='https://garage-mobile.herokuapp.com/user/myservice'
