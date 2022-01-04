@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import login from '../../context/login';
 import AddServices from '../addservices/AddServices';
@@ -18,41 +18,11 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-// import Carousel from 'react-native-snap-carousel';
-import { scrollInterpolator, animatedStyles } from './HomeAnimation';
 
-const SLIDER_WIDTH = Dimensions.get('window').width;
-const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
-const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
-
-const DATA = [
-  {
-    key: '1',
-    category:"Regular maintenance",
-    uri:"https://www.ridetime.ca/wp-content/uploads/2018/04/shutterstock_590265665.jpg",
-    description: "  "
-  },
-  {
-    key: '2',
-    category:"General Maintenance",
-    uri:"https://www.ridetime.ca/wp-content/uploads/2018/04/shutterstock_590265665.jpg",
-    description: "  "
-
-  },
-  {
-    key: '3',
-    category:"Car Body",
-    uri:"https://www.ridetime.ca/wp-content/uploads/2018/04/shutterstock_590265665.jpg",
-    description: "  "
-
-  }
-];
-// for (let i = 0; i < 3; i++) {
-//   DATA.push(i)
-// }
 
 export default function Home({navigation}) {
-    // [index,setIndex]=Use
+
+
     const ListItem = ({ item }) => {
         return (
           <View  style={styles.item}>
