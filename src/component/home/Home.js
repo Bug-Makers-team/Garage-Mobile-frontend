@@ -43,7 +43,7 @@ const ENTRIES1 = [
     title: "Beautiful and dramatic Antelope Canyon",
     subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
     illustration:
-      "https://www.ridetime.ca/wp-content/uploads/2018/04/shutterstock_590265665.jpg",
+      "https://di-uploads-pod2.dealerinspire.com/olathedodgechryslerjeepram/uploads/2019/12/Auto-body-repair_56693085.jpg",
   },
 ];
 const { width: screenWidth } = Dimensions.get("window");

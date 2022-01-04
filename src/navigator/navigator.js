@@ -7,7 +7,7 @@ import Emergency from "../component/chatApp/emergency";
 import Profile from "../component/profile/Profile";
 import ChatApp from "../component/chatApp/chatApp";
 import LogoTitle from "../LogoTitle";
-import Home from "../component/home/Home3";
+import Home from "../component/home/Home";
 
 export default function Navigator({ navigation }) {
   const state = useContext(LoginContext);
