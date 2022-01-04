@@ -4,10 +4,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image } from "react-native";
 import { LoginContext } from "../context/context";
 import Emergency from "../component/chatApp/emergency";
-import Home from "../component/home/Home";
 import Profile from "../component/profile/Profile";
 import ChatApp from "../component/chatApp/chatApp";
 import LogoTitle from "../LogoTitle";
+import Home from "../component/home/Home3";
 
 export default function Navigator({ navigation }) {
   const state = useContext(LoginContext);
@@ -18,15 +18,15 @@ export default function Navigator({ navigation }) {
       <Tab.Navigator
         screenOptions={{
           tabBarStyle: {
-            position: "absolute",
-            bottom: 25,
-            left: 20,
-            right: 20,
-            elevation: 0,
-            backgroundColor: "#ccc",
-            borderRadius: 15,
-            height: 90,
-            ...styles.shadow,
+            // position: "relative",
+            // bottom: 5,
+            // left: 20,
+            // right: 20,
+            // elevation: 0,
+            // backgroundColor: "grey",
+            // borderRadius: 15,
+            height: 75,
+            // ...styles.shadow,
           },
           tabBarShowLabel: false,
           headerRight: () => (
@@ -68,7 +68,7 @@ export default function Navigator({ navigation }) {
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
-                  top: 10,
+                  top: 5,
                 }}
               >
                 <Image
@@ -95,7 +95,7 @@ export default function Navigator({ navigation }) {
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
-                  top: 10,
+                  top: 5,
                 }}
               >
                 <Image
@@ -126,7 +126,7 @@ export default function Navigator({ navigation }) {
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
-                  top: 10,
+                  top: 5,
                 }}
               >
                 <Image
@@ -155,7 +155,7 @@ export default function Navigator({ navigation }) {
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
-                  top: 10,
+                  top: 5,
                 }}
               >
                 <Image
