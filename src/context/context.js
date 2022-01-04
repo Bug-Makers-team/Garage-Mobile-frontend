@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import superagent from 'superagent';
 import base64 from 'base-64';
-// import jwt from 'jsonwebtoken';
-import cookie from 'react-cookies';
 export const LoginContext = React.createContext();
 
 export default function LoginProvider(props) {
 
     const API = 'https://garage-mobile.herokuapp.com';
     const [LoggedIn, setLoggedIn] = useState(false);
-    // const [user, setUser] = useState({});
     const [user, setUser] = useState({ user: "", capabilities: [],id:'' ,token:'',role:''});
     const [showEmergency, setShowEmergency] = useState(true);
-    const [issue, setIssue] = useState("Inform your issue please")
+    const [issue, setIssue] = useState("Inform your issue please");
+    const [userInfo, setUserInfo] = useState({ user: "", capabilities: [],id:'' ,token:'',role:''});
 
-
-
-
-    // user.capabilities = ['read', 'create', 'update', 'delete'];
-    // user.capabilities = ['read', 'create'];
 
     const loginFunction = async (username, password) => {
         // it will update the LoggedIn flag into true
@@ -30,12 +23,16 @@ export default function LoginProvider(props) {
             user.id=response.body.user.id  
             user.token=response.body.user.token  
             user.role=response.body.user.role  
+            user.email=response.body.user.email
+            user.phoneNum=response.body.user.phoneNum
+            console.log(response.body.user.email);
+            console.log(response.body.user.phoneNum);
             console.log(user);
+
             validateMyToken(response.body.token);
         } catch (err) { }
     }
     const logoutFunction = () => {
-        // it will update the LoggedIn flag into false
         setLoggedIn(false);
         setUser({});
     }
@@ -62,22 +59,14 @@ export default function LoginProvider(props) {
     const validateMyToken = async(token) => {
         if (token) {
             setLoggedIn(true);
-            // const user = token;
-            // console.log('user >>>', user[user]);
         } else {
             setLoggedIn(false);
             setUser({});
         }
     }
-    // useEffect(() => {
-    //     // check the token
-    //     const myTokenCookie = cookie.load('token');
-    //     validateMyToken(myTokenCookie);
-    // }, []);
+   
 
     const can = (capability) => {
-        // chaining
-        //optional chaining
         return user?.capabilities?.includes(capability);
     }
 
