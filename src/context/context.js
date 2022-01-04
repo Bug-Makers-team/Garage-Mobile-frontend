@@ -10,8 +10,9 @@ export default function LoginProvider(props) {
     const API = 'https://garage-mobile.herokuapp.com';
     const [LoggedIn, setLoggedIn] = useState(false);
     // const [user, setUser] = useState({});
-    const [user, setUser] = useState({ user: "", capabilities: [],id:'' });
+    const [user, setUser] = useState({ user: "", capabilities: [],id:'' ,token:'',role:''});
     const [showEmergency, setShowEmergency] = useState(true);
+    const [issue, setIssue] = useState("Inform your issue please")
 
 
 
@@ -27,10 +28,11 @@ export default function LoginProvider(props) {
             user.user=response.body.user.username
             user.capabilities=response.body.user.capabilities
             user.id=response.body.user.id  
+            user.token=response.body.user.token  
+            user.role=response.body.user.role  
             console.log(user);
             validateMyToken(response.body.token);
         } catch (err) { }
-
     }
     const logoutFunction = () => {
         // it will update the LoggedIn flag into false
@@ -90,6 +92,8 @@ export default function LoginProvider(props) {
         showEmergency:showEmergency,
         setShowEmergency:setShowEmergency,
         signup:signup,
+        issue:issue,
+        setIssue:setIssue
 
     }
     return (
