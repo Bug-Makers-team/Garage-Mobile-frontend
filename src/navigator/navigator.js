@@ -58,7 +58,7 @@ export default function Navigator({ navigation }) {
           ),
         }}
       >
-        {/* <Tab.Screen
+        <Tab.Screen
           name="Home"
           component={Home}
           options={{
@@ -84,7 +84,7 @@ export default function Navigator({ navigation }) {
               </View>
             ),
           }}
-        /> */}
+        />
         <Tab.Screen
           name="Emergency"
           component={Emergency}
