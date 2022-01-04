@@ -77,10 +77,10 @@ export default function Navigator({ navigation }) {
                   style={{
                     width: 25,
                     height: 25,
-                    tintColor: focused ? "red" : "black",
+                    tintColor: focused ? "#ee8133" : "black",
                   }}
                 />
-                <Text style={{ color: focused ? "red" : "black" }}>HOME</Text>
+                <Text style={{ color: focused ? "#ee8133" : "black" }}>HOME</Text>
               </View>
             ),
           }}
@@ -104,10 +104,10 @@ export default function Navigator({ navigation }) {
                   style={{
                     width: 25,
                     height: 25,
-                    tintColor: focused ? "red" : "black",
+                    tintColor: focused ? "#f44336" : "black",
                   }}
                 />
-                <Text style={{ color: focused ? "red" : "black" }}>
+                <Text style={{ color: focused ? "#f44336" : "black" }}>
                   Emergency
                 </Text>
               </View>
@@ -135,10 +135,10 @@ export default function Navigator({ navigation }) {
                   style={{
                     width: 25,
                     height: 25,
-                    tintColor: focused ? "red" : "black",
+                    tintColor: focused ? "#ee8133" : "black",
                   }}
                 />
-                <Text style={{ color: focused ? "red" : "black" }}>
+                <Text style={{ color: focused ? "#ee8133" : "black" }}>
                   Assistance
                 </Text>
               </View>
@@ -164,10 +164,10 @@ export default function Navigator({ navigation }) {
                   style={{
                     width: 25,
                     height: 25,
-                    tintColor: focused ? "red" : "black",
+                    tintColor: focused ? "#ee8133" : "black",
                   }}
                 />
-                <Text style={{ color: focused ? "red" : "black" }}>
+                <Text style={{ color: focused ? "#ee8133" : "black" }}>
                   PROFILE
                 </Text>
               </View>
