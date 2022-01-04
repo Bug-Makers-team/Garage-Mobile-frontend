@@ -33,7 +33,6 @@ export default function LoginProvider(props) {
             console.log(user);
             validateMyToken(response.body.token);
         } catch (err) { }
-
     }
     const logoutFunction = () => {
         // it will update the LoggedIn flag into false
