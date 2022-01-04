@@ -12,6 +12,7 @@ export default function LoginProvider(props) {
     // const [user, setUser] = useState({});
     const [user, setUser] = useState({ user: "", capabilities: [],id:'' ,token:'',role:''});
     const [showEmergency, setShowEmergency] = useState(true);
+    const [issue, setIssue] = useState("Inform your issue please")
 
 
 
@@ -92,6 +93,8 @@ export default function LoginProvider(props) {
         showEmergency:showEmergency,
         setShowEmergency:setShowEmergency,
         signup:signup,
+        issue:issue,
+        setIssue:setIssue
 
     }
     return (
