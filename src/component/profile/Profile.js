@@ -26,8 +26,8 @@ export default function Profile({ navigation }) {
                 console.log(state.user)
                 }
                 <Text style={styles.name}>{state.user.user}</Text>
-                <Text style={styles.info}>UX Designer / Mobile developer</Text>
-                <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
+                <Text style={styles.info}>{state.user.email}</Text>
+                <Text style={styles.description}>{state.user.phoneNum}</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('MyServises')} style={styles.buttonContainer}>
                   <Text  style={styles.textbuttonContainer} >
                     My Servises
