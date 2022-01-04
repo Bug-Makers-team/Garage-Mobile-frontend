@@ -8,6 +8,7 @@ import { List } from "react-native-paper";
 import login from "../../context/login";
 import * as Location from "expo-location";
 import { styles } from "../../styleSheet/styleSheet";
+import { Alertschema } from "../../alerts/alerts";
 
 const socket = io.connect("https://chat-test-bugmakers.herokuapp.com");
 // const socket = io.connect("http://localhost:3001");
@@ -33,7 +34,17 @@ function App({ navigation }) {
     setRoom(state.user);
     socket.emit("join_room", room);
   }, []);
-
+  const sendHelp=()=>{
+    if(state.issue!=="Inform your issue please"){
+      navigation.navigate("Location")
+    }else{
+      const alertcontent={
+        title:"Alert",
+        text:"Please choose you issue first!"
+      }
+      Alertschema(alertcontent)
+    }
+  }
   const handlePress = () => setExpanded(!expanded);
 
   const handleEmergency = () => {
@@ -101,7 +112,7 @@ function App({ navigation }) {
             left={(props) => (
               <List.Icon {...props} color="#ccc" icon={gear} />
             )}
-              onPress={() => state.setIssue("Inform your issue please")}
+              onPress={() => state.setIssue("Issue not choosen")}
               title="Other issues"
             />
           </List.Accordion>
@@ -119,18 +130,18 @@ function App({ navigation }) {
             borderWidth:1,
             borderColor:'540c0c',
             position: "absolute",
-            bottom: 165,
+            bottom: 60,
             right:50,
             ...shadow,
           }}
-          onPress={() => navigation.navigate("Location")}
+          onPress={() => sendHelp()}
         >
           Send Help
         </Text>
           <View style={{position: "absolute",
-            bottom: 165,
-            left:50,}}>
-            {state.issue==="Inform your issue please"?(<Text>Your issue is: </Text>):(<Text>Your issue is: {state.issue}</Text>)}
+            bottom: 60,
+            left:20,}}>
+            {state.issue==="Inform your issue please"?(null):(<Text>Your issue is: {state.issue}</Text>)}
           </View>
       </When>
       <When condition={!state.LoggedIn}>
