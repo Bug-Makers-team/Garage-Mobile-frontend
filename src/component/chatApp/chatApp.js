@@ -1,17 +1,12 @@
-
 import io from "socket.io-client";
 import { useContext, useEffect, useState } from "react";
 import Chat from "./chat";
-import { Text, View, Button, TextInput, Linking } from 'react-native';
+import { Text, View, Button, TextInput, Linking, ScrollView } from 'react-native';
 import {LoginContext} from "../../context/context";
 import { When } from "react-if";
 import { List } from 'react-native-paper';
 import login from "../../context/login";
-import { StatusBar } from 'expo-status-bar';
-import Header from "./headerChat";
 
-import {ImageBackground,SafeAreaView } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';import tw from 'tailwind-react-native-classnames'
 
 const socket = io.connect("https://chat-test-bugmakers.herokuapp.com");
 // const socket = io.connect("http://localhost:3001");
@@ -22,7 +17,7 @@ function App({navigation}) {
   const [room, setRoom] = useState(state.user);
   const [expanded, setExpanded] = useState(true);
   const [showChat, setShowChat] = useState(false);
- 
+
   useEffect(()=>{
     setUsername(state.user.user)
     setRoom(state.user)
@@ -32,24 +27,33 @@ function App({navigation}) {
   return (
     <>
   <When condition={state.LoggedIn}>
-{/* <View style ={{width:800, height:900, alignItems:"center"}}> */}
-  <SafeAreaProvider>    
-<SafeAreaView style={tw`flex-1 text-black`}>  
 
+    <View style={{alignSelf:"center",marginTop:30,height:"100%" }}>
 
-  <ImageBackground style={{ flex: 1 }}     resizeMode="cover"    source={{uri: "https://www.macmillandictionary.com/external/slideshow/full/White_full.png"}}
-  resizeMode="cover"> 
-  <Header/>
-  <Text>{state.issue}</Text>
-  <Chat  socket={socket} username={username} room={room} /> 
+        <Chat socket={socket} username={username} room={room} />
 
-  </ImageBackground>     
-  <StatusBar animated={true} backgroundColor="green" />   
+      </View>
+        
+        </When>
 
-
-</SafeAreaView>    
-</SafeAreaProvider>  
-{/* </View> */}
+        <When condition={!state.LoggedIn}>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignContent: "center",
+          }}
+        >
+          <Text>Please </Text>
+          <Text
+            style={{ color: "blue" }}
+            onPress={() => navigation.navigate("SignIn")}
+          >
+            signin
+          </Text>
+          <Text> first</Text>
+        </View>
         </When>
     </>
   );
