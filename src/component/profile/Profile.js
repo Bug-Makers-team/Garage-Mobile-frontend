@@ -1,114 +1,112 @@
-import React, { useContext, useEffect, useState } from "react";
-import { View, Text, FlatList } from 'react-native'
+import { useContext } from "react";
 import { LoginContext } from "../../context/context";
-import superagent from "superagent";
-import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
-import {styles} from "../../styleSheet/styleSheet";
-import { AlertschemaApprove } from "../../alerts/alerts";
 
+import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity
+} from 'react-native';
 
-export default function Profile({navigation}) {
-  const state=useContext(LoginContext);
-  const [service, setservices] = useState(null);
-  const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
-  const alertDeleteContent={
-    title:"Alert",
-    process:"delete the service"
-  }
-  const alertBuyContent={
+export default function Profile({ navigation }) {
+  const state = useContext(LoginContext);
 
-  }
-
-    useEffect(() => {
-        (async () => {
-          try {
-            const api='https://garage-mobile.herokuapp.com/user/myservice'
-            const response = await superagent.get(api).set('authorization', `Bearer ${state.user.token}`);
-            // console.log(response.body);
-
-            setservices(
-              response.body.filter((item) => {
-                  // console.log("context",state.user.id);
-                  // console.log(item.user_id);
-                  // console.log(item.user_id === state.user.id);
-                return parseInt(item.user_id) === parseInt(state.user.id);
-              })
-            );
-          } catch (err) {}
-        })();
-      });
-
-      const deleteFunction= async(id)=>{
-        try {
-          const api=`https://garage-mobile.herokuapp.com/user/myservice/${id}/`
-          const response = await superagent.delete(api).set('authorization', `Bearer ${state.user.token}`);
-          console.log(response.body);
-          
-          if (response.body) {
-            try{
-              const api='https://garage-mobile.herokuapp.com/user/myservice'
-              const response = await superagent.get(api).set('authorization', `Bearer ${state.user.token}`);
-              // console.log(response.body);
-  
-              setservices(
-                response.body.filter((item) => {
-                    console.log("context",state.user.id);
-                    // console.log(item.user_id);
-                    // console.log(item.user_id === state.user.id);
-                  return parseInt(item.user_id) === parseInt(state.user.id);
-                })
-              );
-            }catch (err) {}
-          }
-          // setservices(
-          //   response.body.filter((item) => {
-          //       console.log("context",state.user.id);
-          //       console.log(item.user_id);
-          //       console.log(item.user_id === state.user.id);
-          //     return parseInt(item.user_id) === parseInt(state.user.id);
-          //   })
-          // );
-        } catch (err) {}
-      }
-
-    return (
+  return (
+    <>
+      {state.LoggedIn ? (
         <>
-        {state.LoggedIn?(<>
-            {service ? (
-                <>
-          <FlatList
-            data={service}
-            renderItem={({ item }) => (
-                <>
-                <Card >
-                <Card.Title title={item.nameOfServices} left={LeftContent} />
-                <Card.Content>
-                </Card.Content>
-                <Card.Cover source={{ uri:item.imgURL }}/>
-                <Card.Content>
-                  <Paragraph>{item.price}</Paragraph>
-                  <Paragraph>{item.description}</Paragraph>
-                </Card.Content>
-                <Card.Actions>
-                  <View style={{display:"flex" ,flexDirection:"row"}}>
-                    <Text style={styles.button}>Buy Service</Text>
-                    <Text style={styles.button} onPress={()=>AlertschemaApprove(alertDeleteContent,deleteFunction,item.id)}>Delete Service</Text>
-                  </View>
-                </Card.Actions>
-              </Card>
-              </>
-            )}
-          />
-
+          <View style={styles.container}>
+            <View style={styles.header}></View>
+            <Image style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }} />
+            <View style={styles.body}>
+              <View style={styles.bodyContent}>
+             {  
+                console.log(state.user)
+                }
+                <Text style={styles.name}>{state.user.user}</Text>
+                <Text style={styles.info}>UX Designer / Mobile developer</Text>
+                <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('MyServises')} style={styles.buttonContainer}>
+                  <Text  style={styles.textbuttonContainer} >
+                    My Servises
+                  </Text>
+                </TouchableOpacity >
+              </View>
+            </View>
+          </View>
         </>
-      ) : null}
-        </>):(<View style={{display:"flex" ,flexDirection:"row",justifyContent:'center',alignContent:'center'}}>
-            <Text>Please </Text>
-         <Text style={{color: 'blue'}}
-      onPress={() => navigation.navigate('SignIn')}>signin</Text>
-       <Text> first</Text>
-        </View>)}
-        
-        </>
-    )
+      ) : (<View style={{ display: "flex", flexDirection: "row", justifyContent: 'center', alignContent: 'center' }}>
+        <Text>Please </Text>
+        <Text style={{ color: 'blue' }}
+          onPress={() => navigation.navigate('SignIn')}>signin</Text>
+        <Text> first</Text>
+      </View>)}
+    </>
+  );
 }
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: "#00BFFF",
+    height: 200,
+  },
+  avatar: {
+    width: 130,
+    height: 130,
+    borderRadius: 63,
+    borderWidth: 4,
+    borderColor: "white",
+    marginBottom: 10,
+    alignSelf: 'center',
+    position: 'absolute',
+    marginTop: 130
+  },
+  name: {
+    fontSize: 22,
+    color: "#FFFFFF",
+    fontWeight: '600',
+  },
+  body: {
+    marginTop: 40,
+  },
+  bodyContent: {
+    alignItems: 'center',
+    padding: 30,
+  },
+  name: {
+    fontSize: 28,
+    color: "#696969",
+    fontWeight: "600",
+
+  },
+  info: {
+    fontSize: 16,
+    color: "#00BFFF",
+    marginTop: 10
+  },
+  description: {
+    fontSize: 16,
+    color: "#696969",
+    marginTop: 10,
+    textAlign: 'center'
+  },
+  buttonContainer: {
+    textAlign: 'center',
+    marginTop: 20,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    width: 250,
+    borderRadius: 30,
+    backgroundColor: "#00BFFF",
+  },
+  textbuttonContainer: {
+    fontSize: 16,
+    textAlign: 'center',
+  },
+});
+

@@ -1,4 +1,3 @@
-// import * as React from 'react';
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 import base64 from 'base-64';
 import superagent from "superagent";

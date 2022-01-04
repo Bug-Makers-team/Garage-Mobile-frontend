@@ -22,7 +22,7 @@ function App({navigation}) {
   const [room, setRoom] = useState(state.user);
   const [expanded, setExpanded] = useState(true);
   const [showChat, setShowChat] = useState(false);
-
+ 
   useEffect(()=>{
     setUsername(state.user.user)
     setRoom(state.user)
@@ -40,6 +40,7 @@ function App({navigation}) {
   <ImageBackground style={{ flex: 1 }}     resizeMode="cover"    source={{uri: "https://www.macmillandictionary.com/external/slideshow/full/White_full.png"}}
   resizeMode="cover"> 
   <Header/>
+  <Text>{state.issue}</Text>
   <Chat  socket={socket} username={username} room={room} /> 
 
   </ImageBackground>     

@@ -12,6 +12,7 @@ export default function LoginProvider(props) {
     // const [user, setUser] = useState({});
     const [user, setUser] = useState({ user: "", capabilities: [],id:'' ,token:'',role:''});
     const [showEmergency, setShowEmergency] = useState(true);
+    const [issue, setIssue] = useState("Inform your issue please")
 
 
 
@@ -32,7 +33,6 @@ export default function LoginProvider(props) {
             console.log(user);
             validateMyToken(response.body.token);
         } catch (err) { }
-
     }
     const logoutFunction = () => {
         // it will update the LoggedIn flag into false
@@ -92,6 +92,8 @@ export default function LoginProvider(props) {
         showEmergency:showEmergency,
         setShowEmergency:setShowEmergency,
         signup:signup,
+        issue:issue,
+        setIssue:setIssue
 
     }
     return (
