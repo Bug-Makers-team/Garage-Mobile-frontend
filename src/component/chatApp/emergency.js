@@ -98,8 +98,8 @@ function App({ navigation }) {
             left={(props) => (
               <List.Icon {...props} color="#ccc" icon={gear} />
             )}
-              onPress={() => state.setIssue("mechanical issue")}
-              title="mechanical issue"
+              onPress={() => state.setIssue("Accident")}
+              title="Accident"
             />
             <List.Item
             left={(props) => (
