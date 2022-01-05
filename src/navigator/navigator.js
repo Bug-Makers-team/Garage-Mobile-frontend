@@ -4,10 +4,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image } from "react-native";
 import { LoginContext } from "../context/context";
 import Emergency from "../component/chatApp/emergency";
-import Home from "../component/home/Home";
 import Profile from "../component/profile/Profile";
 import ChatApp from "../component/chatApp/chatApp";
 import LogoTitle from "../LogoTitle";
+import Home from "../component/home/Home";
 
 export default function Navigator({ navigation }) {
   const state = useContext(LoginContext);
@@ -17,16 +17,19 @@ export default function Navigator({ navigation }) {
       {/* <NavBar navigation={navigation}/> */}
       <Tab.Navigator
         screenOptions={{
+          headerStyle:{
+            backgroundColor: "#FBF9F5",
+          },
           tabBarStyle: {
-            position: "absolute",
-            bottom: 25,
-            left: 20,
-            right: 20,
-            elevation: 0,
-            backgroundColor: "#ccc",
-            borderRadius: 15,
-            height: 90,
-            ...styles.shadow,
+            // position: "relative",
+            // bottom: 5,
+            // left: 20,
+            // right: 20,
+            // elevation: 0,
+            backgroundColor: "#FBF9F5",
+            // borderRadius: 15,
+            height: 75,
+            // ...styles.shadow,
           },
           tabBarShowLabel: false,
           headerRight: () => (
@@ -37,7 +40,7 @@ export default function Navigator({ navigation }) {
                   style={{
                     padding: 10,
                     color: "#000",
-                    backgroundColor: "#ffffff",
+                    // backgroundColor: "#ffffff",
                   }}
                 >
                   Sign in{" "}
@@ -48,7 +51,7 @@ export default function Navigator({ navigation }) {
                   style={{
                     padding: 10,
                     color: "#000",
-                    backgroundColor: "#ffffff",
+                    // backgroundColor: "#ffffff",
                   }}
                 >
                   Sign Out
@@ -68,7 +71,7 @@ export default function Navigator({ navigation }) {
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
-                  top: 10,
+                  top: 5,
                 }}
               >
                 <Image
@@ -77,10 +80,10 @@ export default function Navigator({ navigation }) {
                   style={{
                     width: 25,
                     height: 25,
-                    tintColor: focused ? "red" : "black",
+                    tintColor: focused ? "#ee8133" : "black",
                   }}
                 />
-                <Text style={{ color: focused ? "red" : "black" }}>HOME</Text>
+                <Text style={{ color: focused ? "#ee8133" : "black" }}>HOME</Text>
               </View>
             ),
           }}
@@ -95,7 +98,7 @@ export default function Navigator({ navigation }) {
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
-                  top: 10,
+                  top: 5,
                 }}
               >
                 <Image
@@ -104,10 +107,10 @@ export default function Navigator({ navigation }) {
                   style={{
                     width: 25,
                     height: 25,
-                    tintColor: focused ? "red" : "black",
+                    tintColor: focused ? "#f44336" : "black",
                   }}
                 />
-                <Text style={{ color: focused ? "red" : "black" }}>
+                <Text style={{ color: focused ? "#f44336" : "black" }}>
                   Emergency
                 </Text>
               </View>
@@ -126,7 +129,7 @@ export default function Navigator({ navigation }) {
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
-                  top: 10,
+                  top: 5,
                 }}
               >
                 <Image
@@ -135,10 +138,10 @@ export default function Navigator({ navigation }) {
                   style={{
                     width: 25,
                     height: 25,
-                    tintColor: focused ? "red" : "black",
+                    tintColor: focused ? "#ee8133" : "black",
                   }}
                 />
-                <Text style={{ color: focused ? "red" : "black" }}>
+                <Text style={{ color: focused ? "#ee8133" : "black" }}>
                   Assistance
                 </Text>
               </View>
@@ -155,7 +158,7 @@ export default function Navigator({ navigation }) {
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
-                  top: 10,
+                  top: 5,
                 }}
               >
                 <Image
@@ -164,10 +167,10 @@ export default function Navigator({ navigation }) {
                   style={{
                     width: 25,
                     height: 25,
-                    tintColor: focused ? "red" : "black",
+                    tintColor: focused ? "#ee8133" : "black",
                   }}
                 />
-                <Text style={{ color: focused ? "red" : "black" }}>
+                <Text style={{ color: focused ? "#ee8133" : "black" }}>
                   PROFILE
                 </Text>
               </View>

@@ -11,6 +11,8 @@ import LogoTitle from "./LogoTitle";
 import { useNavigation } from "@react-navigation/native";
 import Location from "./component/location/Location"
 import ChatApp from "./component/chatApp/chatApp";
+import category from "./component/category/category";
+import MyServises from "./component/profile/MyServises"
 
 const Stack = createNativeStackNavigator();
 
@@ -24,9 +26,9 @@ export default function Main() {
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#dddada",
+            backgroundColor: "#FBF9F5",
           },
-          headerTintColor: "#fff",
+          headerTintColor: "black",
           headerTitleStyle: {
             fontWeight: "bold",
           },
@@ -39,7 +41,7 @@ export default function Main() {
                     padding: 7,
                     marginRight:5,
                     color: "#000",
-                    backgroundColor: "#ffffff",
+                    // backgroundColor: "#ffffff",
                   }}
                 >
                   Sign in{" "}
@@ -51,7 +53,7 @@ export default function Main() {
                     padding: 7,
                     marginRight:5,
                     color: "#000",
-                    backgroundColor: "#ffffff",
+                    // backgroundColor: "#ffffff",
                   }}
                 >
                   Sign Out
@@ -80,7 +82,8 @@ export default function Main() {
         <Stack.Screen name="Emergency" component={Emergency} />
         <Stack.Screen name="Location" component={Location} />
         <Stack.Screen name="ChatApp" component={ChatApp} />
-
+        <Stack.Screen name="category" component={category} />
+        <Stack.Screen name="MyServises" component={MyServises} />
       </Stack.Navigator>
     </>
   );

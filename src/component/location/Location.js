@@ -4,6 +4,7 @@ import MapView, { Marker } from 'react-native-maps';
 import { FontAwesome } from '@expo/vector-icons'; 
 import * as Location  from 'expo-location'
 import * as Permissions from "expo-permissions";
+import { Alertschema } from '../../alerts/alerts';
 
 const MapComponent = ({navigation}) => {
     const [location, setLocation] = React.useState(null)
@@ -18,14 +19,18 @@ const MapComponent = ({navigation}) => {
             }
             const locate = await Location.getCurrentPositionAsync({});
             setLocation(locate.coords)
-            console.log(location);
         })()
     }, []);
+    const alertContent={
+        title:"Location Alert",
+        text:"We took your location, the help is in the way"
+    }
 
     return (
         <>
             {location?(
                 <>
+                {Alertschema(alertContent)}
         <View style={styles.container}>
                 <>
             <Text style={styles.heading}>Map</Text>

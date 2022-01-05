@@ -1,55 +1,52 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import superagent from 'superagent';
 import base64 from 'base-64';
-// import jwt from 'jsonwebtoken';
-import cookie from 'react-cookies';
 export const LoginContext = React.createContext();
 
 export default function LoginProvider(props) {
 
     const API = 'https://garage-mobile.herokuapp.com';
     const [LoggedIn, setLoggedIn] = useState(false);
-    // const [user, setUser] = useState({});
-    const [user, setUser] = useState({ user: "", capabilities: [],id:'' });
+    const [user, setUser] = useState({ user: "", capabilities: [],id:'' ,token:'',role:'',geneder:""});
     const [showEmergency, setShowEmergency] = useState(true);
+    const [issue, setIssue] = useState("Inform your issue please");
 
-
-
-
-    // user.capabilities = ['read', 'create', 'update', 'delete'];
-    // user.capabilities = ['read', 'create'];
 
     const loginFunction = async (username, password) => {
-        // it will update the LoggedIn flag into true
         try {
             const response = await superagent.post(`${API}/signin`).set('authorization', `Basic ${base64.encode(`${username}:${password}`)}`);
-            console.log(response.body.user)
             user.user=response.body.user.username
             user.capabilities=response.body.user.capabilities
             user.id=response.body.user.id  
-            console.log(user);
+            user.token=response.body.user.token  
+            user.role=response.body.user.role  
+            user.email=response.body.user.email
+            user.phoneNum=response.body.user.phoneNum
+            user.geneder=response.body.user.geneder
+            user.cartype=response.body.user.cartype
+
+
             validateMyToken(response.body.token);
         } catch (err) { }
-
     }
     const logoutFunction = () => {
-        // it will update the LoggedIn flag into false
         setLoggedIn(false);
         setUser({});
     }
 
       // signUp
 
-      const signup = async (userName, passWord, email,phoneNum, role) => {
+      const signup = async (userName, passWord, email,phoneNum,geneder,cartype,role) => {
         try {
           let userObj = {
             username: userName,
             password: passWord,
-            phoneNum:phoneNum,
+            geneder:geneder,
+            cartype:cartype,
             email: email,
+            phoneNum:phoneNum,
             role: role
         }
-        console.log(userObj);
           const res = await superagent.post(`${API}/signup`, userObj);
           validateMyToken(res.body.token);
         } catch (error) {
@@ -60,22 +57,14 @@ export default function LoginProvider(props) {
     const validateMyToken = async(token) => {
         if (token) {
             setLoggedIn(true);
-            // const user = token;
-            // console.log('user >>>', user[user]);
         } else {
             setLoggedIn(false);
             setUser({});
         }
     }
-    // useEffect(() => {
-    //     // check the token
-    //     const myTokenCookie = cookie.load('token');
-    //     validateMyToken(myTokenCookie);
-    // }, []);
+   
 
     const can = (capability) => {
-        // chaining
-        //optional chaining
         return user?.capabilities?.includes(capability);
     }
 
@@ -90,6 +79,8 @@ export default function LoginProvider(props) {
         showEmergency:showEmergency,
         setShowEmergency:setShowEmergency,
         signup:signup,
+        issue:issue,
+        setIssue:setIssue
 
     }
     return (
