@@ -26,9 +26,9 @@ export default function Main() {
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#dddada",
+            backgroundColor: "#FBF9F5",
           },
-          headerTintColor: "#fff",
+          headerTintColor: "black",
           headerTitleStyle: {
             fontWeight: "bold",
           },
@@ -41,7 +41,7 @@ export default function Main() {
                     padding: 7,
                     marginRight:5,
                     color: "#000",
-                    backgroundColor: "#ffffff",
+                    // backgroundColor: "#ffffff",
                   }}
                 >
                   Sign in{" "}
@@ -53,7 +53,7 @@ export default function Main() {
                     padding: 7,
                     marginRight:5,
                     color: "#000",
-                    backgroundColor: "#ffffff",
+                    // backgroundColor: "#ffffff",
                   }}
                 >
                   Sign Out

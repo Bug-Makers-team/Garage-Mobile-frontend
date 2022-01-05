@@ -1,16 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, StyleSheet } from 'react-native'
 import { LoginContext } from "../../context/context";
 import superagent from "superagent";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 import { styles } from "../../styleSheet/styleSheet";
 import { AlertschemaApprove } from "../../alerts/alerts";
+import { List } from "react-native-paper";
 
 
-export default function Profile({ navigation }) {
+
+export default function MyServices({ navigation }) {
   const state = useContext(LoginContext);
   const [service, setservices] = useState(null);
-  const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
+  const gear = require('../../../assets/icons/gear.png')
+  const LeftContent = (props) => <Avatar.Icon {...props} icon={gear} color="grey" style={{backgroundColor:null}} />;
   const alertDeleteContent = {
     title: "Alert",
     process: "delete the service"
@@ -18,7 +21,6 @@ export default function Profile({ navigation }) {
   const alertBuyContent = {
 
   }
-
   useEffect(() => {
     (async () => {
       try {
@@ -76,18 +78,17 @@ export default function Profile({ navigation }) {
       {state.LoggedIn ? (<>
         {service ? (
           <>
-            <FlatList
-              data={service}
-              renderItem={({ item }) => (
-                <>
-                  <Card >
-                    <Card.Title title={item.nameOfServices} left={LeftContent} />
+
+                   {service.map((item,idx)=>{
+                     return(<>
+                    <Card >
+                    <Card.Title key={idx} title={item.nameOfServices} left={LeftContent} />
                     <Card.Content>
                     </Card.Content>
-                    <Card.Cover source={{ uri: item.imgURL }} />
+                    <Card.Cover  source={{ uri: item.imgURL }} />
                     <Card.Content>
-                      <Paragraph>{item.price}</Paragraph>
-                      <Paragraph>{item.description}</Paragraph>
+                      <Paragraph><Text style={styles.paragraphText} >Price: </Text>{item.price}</Paragraph>
+                      <Paragraph><Text style={styles.paragraphText} >Description: </Text>{item.description}</Paragraph>
                     </Card.Content>
                     <Card.Actions>
                       <View style={{ display: "flex", flexDirection: "row" }}>
@@ -96,9 +97,36 @@ export default function Profile({ navigation }) {
                       </View>
                     </Card.Actions>
                   </Card>
+                     </>)
+                   })} 
+            {/* <FlatList
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+              data={service}
+              scrollEnabled={false}
+              renderItem={({ item }) => (
+                <>
+                  <Card >
+                    <Card.Title title={item.nameOfServices} left={LeftContent} />
+                    <Card.Content>
+                    </Card.Content>
+                    <Card.Cover source={{ uri: item.imgURL }} />
+                    <Card.Content>
+                      <Paragraph><Text style={styles.paragraphText} >Price: </Text>{item.price}</Paragraph>
+                      <Paragraph><Text style={styles.paragraphText} >Description: </Text>{item.description}</Paragraph>
+                    </Card.Content>
+                    <Card.Actions>
+                      <View style={{ display: "flex", flexDirection: "row" }}>
+                        <Text style={styles.button}>Buy Service</Text>
+                        <Text style={styles.button} onPress={() => AlertschemaApprove(alertDeleteContent, deleteFunction, item.id)}>Delete Service</Text>
+                      </View>
+                    </Card.Actions>
+                  </Card>
+
                 </>
               )}
-            />
+            /> */}
+
 
           </>
         ) : null}

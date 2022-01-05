@@ -17,13 +17,16 @@ export default function Navigator({ navigation }) {
       {/* <NavBar navigation={navigation}/> */}
       <Tab.Navigator
         screenOptions={{
+          headerStyle:{
+            backgroundColor: "#FBF9F5",
+          },
           tabBarStyle: {
             // position: "relative",
             // bottom: 5,
             // left: 20,
             // right: 20,
             // elevation: 0,
-            // backgroundColor: "grey",
+            backgroundColor: "#FBF9F5",
             // borderRadius: 15,
             height: 75,
             // ...styles.shadow,
@@ -37,7 +40,7 @@ export default function Navigator({ navigation }) {
                   style={{
                     padding: 10,
                     color: "#000",
-                    backgroundColor: "#ffffff",
+                    // backgroundColor: "#ffffff",
                   }}
                 >
                   Sign in{" "}
@@ -48,7 +51,7 @@ export default function Navigator({ navigation }) {
                   style={{
                     padding: 10,
                     color: "#000",
-                    backgroundColor: "#ffffff",
+                    // backgroundColor: "#ffffff",
                   }}
                 >
                   Sign Out
