@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 
 const ListItem = ({ item }) => {
-    console.log(item.uri);
   return (
     <View style={styles.item}>
       <Image   

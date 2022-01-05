@@ -15,24 +15,22 @@ export default function MyServices({ navigation }) {
   const gear = require('../../../assets/icons/gear.png')
   const LeftContent = (props) => <Avatar.Icon {...props} icon={gear} color="grey" style={{backgroundColor:null}} />;
   const alertDeleteContent = {
-    title: "Alert",
+    title: "Delete",
     process: "delete the service"
   }
   const alertBuyContent = {
-
+    title: "Buy",
+    process: "Buy the service"
   }
   useEffect(() => {
     (async () => {
       try {
         const api = 'https://garage-mobile.herokuapp.com/user/myservice'
         const response = await superagent.get(api).set('authorization', `Bearer ${state.user.token}`);
-        // console.log(response.body);
 
         setservices(
           response.body.filter((item) => {
-            // console.log("context",state.user.id);
-            // console.log(item.user_id);
-            // console.log(item.user_id === state.user.id);
+
             return parseInt(item.user_id) === parseInt(state.user.id);
           })
         );
@@ -44,32 +42,21 @@ export default function MyServices({ navigation }) {
     try {
       const api = `https://garage-mobile.herokuapp.com/user/myservice/${id}/`
       const response = await superagent.delete(api).set('authorization', `Bearer ${state.user.token}`);
-      console.log(response.body);
 
       if (response.body) {
         try {
           const api = 'https://garage-mobile.herokuapp.com/user/myservice'
           const response = await superagent.get(api).set('authorization', `Bearer ${state.user.token}`);
-          // console.log(response.body);
 
           setservices(
             response.body.filter((item) => {
-              console.log("context", state.user.id);
-              // console.log(item.user_id);
-              // console.log(item.user_id === state.user.id);
+
               return parseInt(item.user_id) === parseInt(state.user.id);
             })
           );
         } catch (err) { }
       }
-      // setservices(
-      //   response.body.filter((item) => {
-      //       console.log("context",state.user.id);
-      //       console.log(item.user_id);
-      //       console.log(item.user_id === state.user.id);
-      //     return parseInt(item.user_id) === parseInt(state.user.id);
-      //   })
-      // );
+
     } catch (err) { }
   }
 
@@ -92,7 +79,7 @@ export default function MyServices({ navigation }) {
                     </Card.Content>
                     <Card.Actions>
                       <View style={{ display: "flex", flexDirection: "row" }}>
-                        <Text style={styles.button}>Buy Service</Text>
+                        <Text style={styles.button}onPress={() => AlertschemaApprove(alertBuyContent, deleteFunction, item.id)}>Buy Service</Text>
                         <Text style={styles.button} onPress={() => AlertschemaApprove(alertDeleteContent, deleteFunction, item.id)}>Delete Service</Text>
                       </View>
                     </Card.Actions>

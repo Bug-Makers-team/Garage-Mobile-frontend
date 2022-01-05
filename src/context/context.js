@@ -7,17 +7,14 @@ export default function LoginProvider(props) {
 
     const API = 'https://garage-mobile.herokuapp.com';
     const [LoggedIn, setLoggedIn] = useState(false);
-    const [user, setUser] = useState({ user: "", capabilities: [],id:'' ,token:'',role:''});
+    const [user, setUser] = useState({ user: "", capabilities: [],id:'' ,token:'',role:'',geneder:""});
     const [showEmergency, setShowEmergency] = useState(true);
     const [issue, setIssue] = useState("Inform your issue please");
-    const [userInfo, setUserInfo] = useState({ user: "", capabilities: [],id:'' ,token:'',role:''});
 
 
     const loginFunction = async (username, password) => {
-        // it will update the LoggedIn flag into true
         try {
             const response = await superagent.post(`${API}/signin`).set('authorization', `Basic ${base64.encode(`${username}:${password}`)}`);
-            console.log(response.body.user)
             user.user=response.body.user.username
             user.capabilities=response.body.user.capabilities
             user.id=response.body.user.id  
@@ -25,9 +22,9 @@ export default function LoginProvider(props) {
             user.role=response.body.user.role  
             user.email=response.body.user.email
             user.phoneNum=response.body.user.phoneNum
-            console.log(response.body.user.email);
-            console.log(response.body.user.phoneNum);
-            console.log(user);
+            user.geneder=response.body.user.geneder
+            user.cartype=response.body.user.cartype
+
 
             validateMyToken(response.body.token);
         } catch (err) { }
@@ -39,16 +36,17 @@ export default function LoginProvider(props) {
 
       // signUp
 
-      const signup = async (userName, passWord, email,phoneNum, role) => {
+      const signup = async (userName, passWord, email,phoneNum,geneder,cartype,role) => {
         try {
           let userObj = {
             username: userName,
             password: passWord,
-            phoneNum:phoneNum,
+            geneder:geneder,
+            cartype:cartype,
             email: email,
+            phoneNum:phoneNum,
             role: role
         }
-        console.log(userObj);
           const res = await superagent.post(`${API}/signup`, userObj);
           validateMyToken(res.body.token);
         } catch (error) {

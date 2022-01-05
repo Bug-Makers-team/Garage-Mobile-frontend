@@ -15,7 +15,6 @@ export default function services({ route, navigation }) {
   // let service=null;
   // { name: "", description: "", category: "", price: "", imgURL: "" }
   const { categoryName } = route.params;
-  console.log(categoryName);
   useEffect(() => {
     (async () => {
       try {
@@ -23,7 +22,6 @@ export default function services({ route, navigation }) {
 
         setservices(
           response.body.filter((item) => {
-            console.log(item.category);
             return item.category === categoryName;
           })
         );
@@ -54,7 +52,6 @@ export default function services({ route, navigation }) {
         price: item.price,
         imgURL: item.imgURL
       }
-      console.log(obj);
     //   let config = {
     //     headers: {
     //       authorization: `Bearer ${base64.encode(`${state.user.token}`)}`
@@ -67,15 +64,12 @@ export default function services({ route, navigation }) {
         // .then(result=>{console.log(result.status);})
     try{
     const response = await superagent.post(api).send(obj).set('authorization', `Bearer ${state.user.token}`);
-    console.log(response.status);
     }catch(err){}
 
 //   .catch (err=>console.log(err)) 
     }
 }
-console.log('first',state.user.token);
 
-console.log('second',base64.encode(state.user.token))
 
 
 
@@ -98,7 +92,7 @@ console.log('second',base64.encode(state.user.token))
                   <Paragraph><Text style={styles.paragraphText} >Description: </Text>{item.description}</Paragraph>
                 </Card.Content>
                 <Card.Actions>
-                    <Text style={styles.button} onPress={()=>{addServices(item)}}>Buy Service</Text>
+                    <Text style={styles.button} onPress={()=>{addServices(item)}}>Get Service</Text>
                 </Card.Actions>
               </Card>
               </>
