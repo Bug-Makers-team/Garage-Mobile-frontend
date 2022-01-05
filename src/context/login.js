@@ -27,15 +27,15 @@ export default class login extends React.Component {
       password: null,
       email: null,
       phoneNum: null,
-      cartype: null,
+      cartype: "",
       geneder: "male",
       sign: false,
       
     };
   }
   checking=()=>{
-    const {username,password,email,phoneNum,cartype,geneder}=this.state
-    if(username && password && email && phoneNum && cartype && geneder){
+    const {username,password,email,phoneNum}=this.state
+    if(username && password && email && phoneNum ){
       this.handelSignupSumbit()
     }else{
       const alertContent={
@@ -198,7 +198,7 @@ export default class login extends React.Component {
                 placeholder="car type"
                 type="text"
                 name="cartype"
-                onChangeText={this.handlePhonenum}
+                onChangeText={this.handleCartype}
               />
               <View style={{ display: "flex", flexDirection:"row" ,marginHorizontal: 55,paddingVertical:20,}}>
                 <View style={{ display: "flex", flexDirection: "row" ,alignItems:"center"}}>
