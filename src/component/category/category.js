@@ -30,7 +30,8 @@ export default function services({ route, navigation }) {
       } catch (err) {}
     })();
   }, []);
-  const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
+  const gear = require('../../../assets/icons/gear.png')
+  const LeftContent = (props) => <Avatar.Icon {...props} icon={gear} color="grey" style={{backgroundColor:null}} />;
   let alertContent;
 
   if (state.LoggedIn) {
@@ -93,8 +94,8 @@ console.log('second',base64.encode(state.user.token))
                 </Card.Content>
                 <Card.Cover source={{ uri:item.imgURL }}/>
                 <Card.Content>
-                  <Paragraph>{item.price}</Paragraph>
-                  <Paragraph>{item.description}</Paragraph>
+                  <Paragraph><Text style={styles.paragraphText} >Price: </Text>{item.price}</Paragraph>
+                  <Paragraph><Text style={styles.paragraphText} >Description: </Text>{item.description}</Paragraph>
                 </Card.Content>
                 <Card.Actions>
                     <Text style={styles.button} onPress={()=>{addServices(item)}}>Buy Service</Text>
