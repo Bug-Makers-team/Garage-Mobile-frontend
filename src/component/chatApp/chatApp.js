@@ -14,13 +14,15 @@ const socket = io.connect("https://chat-test-bugmakers.herokuapp.com");
 function App({navigation}) {
   const state =useContext(LoginContext)
   const [username, setUsername] = useState(state.user.user);
-  const [room, setRoom] = useState(state.user);
+  // const [room, setRoom] = useState(state.user);
+  const value={id:"allroom"};
+  const [room, setRoom] = useState(value);
   const [expanded, setExpanded] = useState(true);
   const [showChat, setShowChat] = useState(false);
-
   useEffect(()=>{
     setUsername(state.user.user)
-    setRoom(state.user)
+    // setRoom(state.user)
+    setRoom(value)
     socket.emit("join_room", room);
   },[])
 

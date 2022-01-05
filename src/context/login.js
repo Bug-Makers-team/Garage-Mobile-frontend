@@ -10,8 +10,11 @@ import {
   SafeAreaView,
   Image,
   KeyboardAvoidingView,
+  ScrollView,
 } from "react-native";
 import { Form, FormItem } from "react-native-form-component";
+import { RadioButton } from "react-native-paper";
+import { Alertschema } from "../alerts/alerts";
 // import {FontAwesome}  from '@expo/vector-icons';
 // import { EvilIcons } from '@expo/vector-icons';
 // import { TextInput } from 'react-native-paper';
@@ -20,13 +23,27 @@ export default class login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: "",
-      email: "",
-      phoneNum: "",
+      username: null,
+      password: null,
+      email: null,
+      phoneNum: null,
+      cartype: null,
+      geneder: "male",
       sign: false,
-      back: false,
+      
     };
+  }
+  checking=()=>{
+    const {username,password,email,phoneNum,cartype,geneder}=this.state
+    if(username && password && email && phoneNum && cartype && geneder){
+      this.handelSignupSumbit()
+    }else{
+      const alertContent={
+        title:"Alert",
+        text:"please fill all the fields"
+      }
+      Alertschema(alertContent)
+    }
   }
 
   handleUsername = (enteredText) => {
@@ -43,12 +60,12 @@ export default class login extends React.Component {
   handlePhonenum = (enteredText) => {
     this.setState({ phoneNum: enteredText });
   };
+  handleCartype = (enteredText) => {
+    this.setState({ cartype: enteredText });
+  };
   handleSubmit = () => {
-    //   if(this.state.username !== "" && this.state.password !== ""){
     this.context.loginFunction(this.state.username, this.state.password);
-    // console.log(typeof this.state.username,typeof this.state.password);
-    console.log("submited");
-    //   }
+
   };
 
   //signUp
@@ -57,7 +74,9 @@ export default class login extends React.Component {
       this.state.username,
       this.state.password,
       this.state.email,
-      this.state.phoneNum
+      this.state.phoneNum,
+      this.state.geneder,
+      this.state.cartype,
     );
     this.setState({ sign: false });
   };
@@ -142,6 +161,8 @@ export default class login extends React.Component {
 
           {/* Sign up form */}
           <When condition={this.state.sign}>
+            <ScrollView>
+            
             <View>
               <TextInput
                 style={style.container}
@@ -172,11 +193,42 @@ export default class login extends React.Component {
                 name="phoneNum"
                 onChangeText={this.handlePhonenum}
               />
+              <TextInput
+                style={style.container}
+                placeholder="car type"
+                type="text"
+                name="cartype"
+                onChangeText={this.handlePhonenum}
+              />
+              <View style={{ display: "flex", flexDirection:"row" ,marginHorizontal: 55,paddingVertical:20,}}>
+                <View style={{ display: "flex", flexDirection: "row" ,alignItems:"center"}}>
+                  <RadioButton
+                    color={"#ee8133"}
+                    value="male"
+                    status={
+                      this.state.geneder === "male" ? "checked" : "unchecked"
+                    }
+                    onPress={() => this.setState({ geneder: "male" })}
+                    />
+                    <Text> Male</Text>
+                </View>
+                <View style={{ display: "flex", flexDirection: "row", alignItems:"center" }}>
+                  <RadioButton
+                    color={"#ee8133"}
+                    value="female"
+                    status={
+                      this.state.geneder === "female" ? "checked" : "unchecked"
+                    }
+                    onPress={() => this.setState({ geneder: "female" })}
+                    />
+                    <Text>Female</Text>
+                </View>
+              </View>
 
               <View>
                 <Text
                   style={style.buttonStyle}
-                  onPress={() => this.handelSignupSumbit()}
+                  onPress={() => this.checking()}
                 >
                   Sign Up
                 </Text>
@@ -187,6 +239,7 @@ export default class login extends React.Component {
               {/* <Button onPress={()=>this.flagSign()} title="Sign up" /> */}
               {/* </View> */}
             </View>
+            </ScrollView>
           </When>
         </When>
         {this.context.LoggedIn ? <>{this.goBack()}</> : null}
@@ -212,7 +265,7 @@ const style = StyleSheet.create({
     alignItems: "center",
     marginHorizontal: 55,
     borderWidth: 2,
-    marginTop: 50,
+    marginTop: 25,
     paddingHorizontal: 20,
     borderColor: "#ee8133",
     // borderRadius: 23,
@@ -220,10 +273,10 @@ const style = StyleSheet.create({
     color: "#333",
   },
   buttonStyle: {
-    color: "black",
+    color: "white",
     textAlign: "center",
     padding: 10,
-    marginHorizontal: 55,
+    marginHorizontal: 120,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,

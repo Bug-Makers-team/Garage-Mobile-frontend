@@ -43,7 +43,15 @@ const ENTRIES1 = [
     title: "Beautiful and dramatic Antelope Canyon",
     subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
     illustration:
-      "https://www.ridetime.ca/wp-content/uploads/2018/04/shutterstock_590265665.jpg",
+      "https://i.ibb.co/6HFCCRV/What-Car-Color-Should-I-Get.jpg",
+  },
+  {
+    key: "4",
+    category: "Electrical",
+    title: "Beautiful and dramatic Antelope Canyon",
+    subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
+    illustration:
+      "https://d32ptomnhiuevv.cloudfront.net/en-us/sites/default/files/styles/blog_landing_header_687/public/How_car_electrical_system_works.png?itok=CH-sqFy0",
   },
 ];
 const { width: screenWidth } = Dimensions.get("window");
@@ -97,10 +105,15 @@ const MyCarousel = ({navigation}) => {
           ref={carouselRef}
           sliderWidth={screenWidth}
           sliderHeight={screenWidth}
-          itemWidth={screenWidth - 60}
+          itemWidth={screenWidth - 120}
           data={entries}
           renderItem={renderItem}
           hasParallaxImages={true}
+          loop={true}
+          loopClonesPerSide={4}
+          autoplay={true}
+          autoplayDelay={500}
+          autoplayInterval={3000}
         />
        
       </View>

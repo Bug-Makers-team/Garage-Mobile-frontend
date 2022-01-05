@@ -64,7 +64,7 @@ function App({ navigation }) {
   return (
     <>
       <When condition={state.LoggedIn}>
-        <List.Section title="Accordions">
+        <List.Section style={{marginTop:40}}>
           <List.Accordion
             title="Inform your issue please"
             style={{
@@ -117,7 +117,6 @@ function App({ navigation }) {
             />
           </List.Accordion>
         </List.Section>
-        {console.log(state.issue)}
        
         <Text
           style={{

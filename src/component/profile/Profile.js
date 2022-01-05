@@ -26,18 +26,26 @@ export default function Profile({ navigation }) {
         <>
           <View style={styles.container}>
             <View style={styles.header}></View>
+            {state.user.geneder==='male'?(
             <Image
               style={styles.avatar}
               source={{
-                uri: "https://bootdey.com/img/Content/avatar/avatar6.png",
+                uri: "https://www.bootdey.com/app/webroot/img/Content/avatar/avatar7.png",
+              }}
+            />):(
+              <Image
+              style={styles.avatar}
+              source={{
+                uri: "https://www.bootdey.com/app/webroot/img/Content/avatar/avatar8.png",
               }}
             />
+            )}
             <View style={styles.body}>
               <View style={styles.bodyContent}>
-                {console.log(state.user)}
                 <Text style={styles.name}>{state.user.user}</Text>
                 <Text style={styles.info}>{state.user.email}</Text>
                 <Text style={styles.description}>{state.user.phoneNum}</Text>
+                <Text style={styles.description}>{state.user.cartype}</Text>
           <List.Section  style={{
                       borderRadius: 15,
                       borderWidth: 2,
@@ -117,6 +125,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     position: "absolute",
     marginTop: 130,
+    backgroundColor:"#5cc6db",
   },
   name: {
     fontSize: 22,

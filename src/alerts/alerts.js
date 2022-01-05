@@ -29,7 +29,6 @@ Alert.alert(
   { text: "Yes", onPress: () => fn(id) },
     {
       text: "No",
-      // onPress: () => console.log("Cancel Pressed"),
       style: "cancel"
     }
   ],
@@ -37,31 +36,7 @@ Alert.alert(
     cancelable: true,
   }
 );
-// Alert.alert(
-//   `${alert.title}`,
-//   `Are you sure you want to ${alert.process}`,
-  
-//   [
-//     {
-//       text: "ok",
-//       onPress: () => fn(),
-//       style: "cancel",
-//     },
-//     {
-//       text: "Cancel",
-//     //   onPress: () => Alert.alert("Cancel Pressed"),
-//       style: "cancel",
-      
-//     },
-//   ],
-//   {
-//     cancelable: true,
-//     // onDismiss: () =>
-//     //   Alert.alert(
-//     //     "This alert was dismissed by tapping outside of the alert dialog."
-//     //   ),
-//   }
-// );
+
 
 
 
